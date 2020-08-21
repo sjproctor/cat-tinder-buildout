@@ -1,0 +1,18 @@
+#footer{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+  position: sticky;
+}
+
+#home-body{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.cat{
+  height: 15rem;
+  border: 2px solid black;
+}
