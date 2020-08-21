@@ -8,9 +8,9 @@ As a developer, I have been commissioned to create an application where a user c
 ### Cat Tinder Buildout
 Each section has the code built out for that particular section. Topic user stories and process notes are in the individual README of each project.
 
-**Day 1:** [ Introduction and Routing ](./cat-tinder-intro/README.md)  
-**Day 2:** [ Read Functionality ](./cat-tinder-read/README.md)  
-**Day 3:** [ Create Functionality ](./cat-tinder-create/README.md)  
-**Day 3:** [ Edit Functionality ](./cat-tinder-edit/README.md)  
-**Day 4:** [ API Endpoints and Validations ](./cat-tinder-read/README.md)  
-**Day 5:** [ Fetch Functionality ](./cat-tinder-fetch/README.md)
+**Day 1:** [ Introduction and Routing ](./cat-tinder-intro)  
+**Day 2:** [ Read Functionality ](./cat-tinder-read)  
+**Day 3:** [ Create Functionality ](./cat-tinder-create)  
+**Day 3:** [ Edit Functionality ](./cat-tinder-edit)  
+**Day 4:** [ API Endpoints and Validations ](./cat-tinder-read)  
+**Day 5:** [ Fetch Functionality ](./cat-tinder-fetch)
