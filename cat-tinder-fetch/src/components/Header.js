@@ -35,7 +35,7 @@ class Header extends Component{
             <Navbar color="faded" light>
               <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
               <NavbarToggler onClick={ this.toggleNavbar } className="mr-2" />
-              <Collapse isOpen={!this.state.collapsed} navbar>
+              <Collapse isOpen={ !this.state.collapsed } navbar>
                 <Nav navbar>
                   <NavItem>
                     <NavLink to="/catindex">See All the Cats</NavLink>

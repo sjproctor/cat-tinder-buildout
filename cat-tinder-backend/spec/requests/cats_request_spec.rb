@@ -44,33 +44,33 @@ RSpec.describe "Cats", type: :request do
 
 
 
-  # it "edits a cat" do
-  #   cat_params = {
-  #     cat: {
-  #       name: 'Felix',
-  #       age: 4,
-  #       enjoys: 'Walks in the park.'
-  #     }
-  #   }
-  #   post '/cats', params: cat_params
-  #
-  #   cat = Cat.first
-  #
-  #   new_cat_params = {
-  #     cat: {
-  #       name: 'Felix',
-  #       age: 2,
-  #       enjoys: 'Walks in the park.'
-  #     }
-  #   }
-  #   patch "/cats/#{cat.id}", params: new_cat_params
-  #
-  #   # Assure that we get a success back
-  #   expect(response).to have_http_status(:ok)
-  #
-  #   # Assure that the edited cat has the correct attributes
-  #   expect(cat.age).to eq 2
-  # end
+  it "edits a cat" do
+    cat_params = {
+      cat: {
+        name: 'Felix',
+        age: 4,
+        enjoys: 'Walks in the park.'
+      }
+    }
+    post '/cats', params: cat_params
+
+    cat = Cat.first
+
+    new_cat_params = {
+      cat: {
+        name: 'Felix',
+        age: 2,
+        enjoys: 'Walks in the park.'
+      }
+    }
+    patch "/cats/#{cat.id}", params: new_cat_params
+
+    # Assure that we get a success back
+    expect(response).to have_http_status(:ok)
+
+    # Assure that the edited cat has the correct attributes
+    expect(cat.age).to eq 2
+  end
 
 
   it "deletes a cat" do
@@ -87,15 +87,6 @@ RSpec.describe "Cats", type: :request do
     expect(response).to have_http_status(:ok)
     puts cat.valid?
   end
-
-
-
-
-
-
-
-
-
 
 
 
