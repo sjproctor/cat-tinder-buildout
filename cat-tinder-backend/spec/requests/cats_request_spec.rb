@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Cats", type: :request do
-  it "gets a list of Cats" do
+RSpec.describe 'Cats', type: :request do
+
+  it 'gets a list of Cats' do
     # Create a new cat in the Test Database (not the same one as development)
     Cat.create(name: 'Felix', age: 2, enjoys: 'Walks in the park')
 
@@ -12,13 +13,13 @@ RSpec.describe "Cats", type: :request do
     cats = JSON.parse(response.body)
 
     # Assure that we got a successful response
-    expect(response).to have_http_status(:ok)
+    expect(response).to have_http_status(200)
 
     # Assure that we got one result back as expected
     expect(cats.length).to eq 1
   end
 
-  it "creates a new Cat" do
+  it 'creates a new Cat' do
     # The params we are going to send with the request
     cat_params = {
       cat: {
@@ -32,7 +33,7 @@ RSpec.describe "Cats", type: :request do
     post '/cats', params: cat_params
 
     # Assure that we get a success back
-    expect(response).to have_http_status(:ok)
+    expect(response).to have_http_status(200)
 
     # Look up the cat we expect to be created in the Database
     cat = Cat.first
@@ -42,9 +43,7 @@ RSpec.describe "Cats", type: :request do
   end
 
 
-
-
-  it "edits a cat" do
+  it 'edits a cat' do
     cat_params = {
       cat: {
         name: 'Felix',
@@ -65,15 +64,18 @@ RSpec.describe "Cats", type: :request do
     }
     patch "/cats/#{cat.id}", params: new_cat_params
 
+    # redefine the variable to reference the same cat initially created
+    cat = Cat.find cat.id
+
     # Assure that we get a success back
-    expect(response).to have_http_status(:ok)
+    expect(response).to have_http_status(200)
 
     # Assure that the edited cat has the correct attributes
     expect(cat.age).to eq 2
   end
 
 
-  it "deletes a cat" do
+  it 'deletes a cat' do
     cat_params = {
       cat: {
         name: 'Felix',
@@ -84,8 +86,9 @@ RSpec.describe "Cats", type: :request do
     post '/cats', params: cat_params
     cat = Cat.first
     delete "/cats/#{cat.id}"
-    expect(response).to have_http_status(:ok)
-    puts cat.valid?
+    expect(response).to have_http_status(200)
+    cats = Cat.all
+    expect(cats).to be_empty
   end
 
 

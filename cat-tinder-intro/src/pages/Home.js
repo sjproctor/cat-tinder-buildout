@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import Header from '../components/Header.js'
-import Footer from '../components/Footer.js'
-import toast from '../assets/toast.png'
 import raisins from '../assets/raisins.png'
+import toast from '../assets/toast.png'
+import kevin from '../assets/kevin.png'
 
 class Home extends Component{
   render(){
     return(
       <React.Fragment>
-        <Header />
         <div id="home-body">
-          <img src={ toast } alt="Close up of a cat nose" className="cat"/>
-          <img src={ raisins } alt="Close up of a cat nose" className="cat"/>
+          <img src={ raisins } alt="sleepy flat-faced kitty" className="cat" />
+          <img src={ kevin } alt="snuggly kitty" className="cat" />
+          <img src={ toast } alt="upside down kitty face" className="cat" />
         </div>
-        <Footer />
       </React.Fragment>
     )
   }

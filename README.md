@@ -11,6 +11,6 @@ Each section has the code built out for that particular section. Topic user stor
 **Day 1:** [ Introduction and Routing ](./cat-tinder-intro)  
 **Day 2:** [ Read Functionality ](./cat-tinder-read)  
 **Day 3:** [ Create Functionality ](./cat-tinder-create)  
-**Day 3:** [ Edit Functionality ](./cat-tinder-edit)  
+**Day 3:** [ Update Functionality ](./cat-tinder-edit)  
 **Day 4:** [ API Endpoints and Validations ](./cat-tinder-read)  
 **Day 5:** [ Fetch Functionality ](./cat-tinder-fetch)

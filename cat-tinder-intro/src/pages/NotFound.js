@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import Header from '../components/Header.js'
-import Footer from '../components/Footer.js'
+import toast404 from '../assets/no-toast.png'
 
-class CatIndex extends Component{
+class NotFound extends Component{
   render(){
     return(
       <React.Fragment>
-        <Header />
-        <h2>Something Went Wrong</h2>
-        <Footer />
+        <div id="not-found-body">
+          <h3>Oops something went wrong!</h3>
+          <img src={ toast404 } alt="cat yawning" className="cat" />
+        </div>
       </React.Fragment>
     )
   }
 }
-export default CatIndex
+export default NotFound

@@ -68,8 +68,8 @@ handleChange = (e) => {
 
 Example:
 ```javascript
-editCat = (editcat, id) => {
-  console.log("editcat:", editcat)
+updateCat = (cat, id) => {
+  console.log("cat:", cat)
   console.log("id:", id)
 }
 
@@ -80,7 +80,7 @@ editCat = (editcat, id) => {
     let cat = this.state.cats.find(cat => cat.id === parseInt(id))
     return(
       <CatEdit
-        editCat={ this.editCat }
+        updateCat={ this.updateCat }
         cat={ cat }
       />
     )
@@ -99,7 +99,7 @@ handleSubmit = (e) => {
   // keeps react from refreshing the page unnecessarily
   e.preventDefault()
   // a function call being passed from App.js
-  this.props.editCat(this.state.form, this.props.cat.id)
+  this.props.updateCat(this.state.form, this.props.cat.id)
 }
 ```
 
@@ -157,7 +157,7 @@ constructor(props){
 
 handleSubmit = (e) => {
   e.preventDefault()
-  this.props.editCat(this.state.form, this.props.cat.id)
+  this.props.updateCat(this.state.form, this.props.cat.id)
   // added setState
   this.setState({ success: true })
 }

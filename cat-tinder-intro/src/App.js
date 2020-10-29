@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
-import Home from './pages/Home'
+
+import Header from './components/Header'
+import Footer from './components/Footer'
+
 import CatIndex from './pages/CatIndex'
 import CatShow from './pages/CatShow'
 import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
+import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-// imports routing components
+
+import './App.css'
+import mockCats from './mockCats.js'
+
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
-import './App.css'
-import mockCats from './mockCats.js'
 
 class App extends Component{
   constructor(props){
@@ -21,11 +26,10 @@ class App extends Component{
       cats: mockCats
     }
   }
-
   render(){
     return(
-      <React.Fragment>
-        <Router>
+      <Router>
+        <Header />
           <Switch>
             {/* Home */}
             <Route exact path="/" component={ Home } />
@@ -39,8 +43,8 @@ class App extends Component{
             <Route path="/catedit/:id" component={ CatEdit } />
             <Route component={ NotFound }/>
           </Switch>
-        </Router>
-      </React.Fragment>
+        <Footer />
+      </Router>
     )
   }
 }

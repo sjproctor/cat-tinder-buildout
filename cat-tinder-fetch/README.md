@@ -40,14 +40,13 @@ constructor(props){
 }
 
 componentDidMount(){
+  this.catIndex()
+}
+
+catIndex = () => {
   fetch("http://localhost:3000/cats")
   .then(response => {
-    // checking for a successful response
-    if(response.status === 200){
-       // convert the response to json
-       // returns a Promise
-      return(response.json())
-    }
+    return response.json()
   })
   .then(catsArray => {
     // set the state with the data from the backend into the empty array
@@ -76,11 +75,14 @@ createNewCat = (newcat) => {
     method: "POST"
   })
   .then(response => {
-    // if the response is good  - reload the cats
-    if(response.status === 200){
-      this.componentDidMount()
+    if(response.status === 422){
+      alert("There is something wrong with your submission.")
     }
-    return response
+    return response.json()
+  })
+  .then(payload => {
+    console.log(payload)
+    this.catIndex()
   })
   .catch(errors => {
     console.log("create errors:", errors)
@@ -93,10 +95,10 @@ createNewCat = (newcat) => {
 
 Example:
 ```javascript
-editCat = (editcat, id) => {
+updateCat = (cat, id) => {
   return fetch(`http://localhost:3000/cats/${id}`, {
     // converting an object to a string
-    body: JSON.stringify(editcat),
+    body: JSON.stringify(cat),
     // specify the info being sent in JSON and the info returning should be JSON
     headers: {
       "Content-Type": "application/json"
@@ -105,14 +107,16 @@ editCat = (editcat, id) => {
     method: "PATCH"
   })
   .then(response => {
-    // if the response is good  - reload the cats
-    if(response.status === 200){
-      this.componentDidMount()
+    if(response.status === 422){
+      alert("Please check your submission.")
     }
-    return response
+    return response.json()
+  })
+  .then(payload => {
+    this.catIndex()
   })
   .catch(errors => {
-    console.log("edit errors", errors)
+    console.log("update errors:", errors)
   })
 }
 ```
@@ -130,11 +134,7 @@ deleteCat = (id) => {
     method: "DELETE"
   })
   .then(response => {
-    // if the response is good  - reload the cats
-    if(response.status === 200){
-      this.componentDidMount()
-    }
-    return response
+    return response.json()
   })
   .catch(errors => {
     console.log("delete errors:", errors)

@@ -120,8 +120,8 @@ class Home extends Component{
       <React.Fragment>
         <Header />
         <div id="home-body">
-          <img src={ toast } alt="Close up of a cat nose" className="cat"/>
-          <img src={ raisins } alt="Close up of a cat nose" className="cat"/>
+          <img src={ toast } alt="Close up of a cat nose" className="cat" />
+          <img src={ raisins } alt="Close up of a cat nose" className="cat" />
         </div>
         <Footer />
       </React.Fragment>

@@ -26,8 +26,8 @@ class App extends Component{
     console.log("newcat:", newcat)
   }
 
-  editCat = (editcat, id) => {
-    console.log("editcat:", editcat)
+  updateCat = (cat, id) => {
+    console.log("cat:", cat)
     console.log("id:", id)
   }
 
@@ -74,7 +74,7 @@ class App extends Component{
                 let cat = this.state.cats.find(cat => cat.id === parseInt(id))
                 return(
                   <CatEdit
-                    editCat={ this.editCat }
+                    updateCat={ this.updateCat }
                     cat={ cat }
                   />
                 )

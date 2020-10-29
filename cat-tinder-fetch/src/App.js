@@ -23,14 +23,13 @@ class App extends Component{
   }
 
   componentDidMount(){
+    this.catIndex()
+  }
+
+  catIndex = () => {
     fetch("http://localhost:3000/cats")
     .then(response => {
-      // checking for a successfull response
-      if(response.status === 200){
-         // convert the response to json
-         // returns a promise
-        return(response.json())
-      }
+      return response.json()
     })
     .then(catsArray => {
       // set the state with the data from the backend into the empty array
@@ -42,7 +41,6 @@ class App extends Component{
   }
 
   createNewCat = (newcat) => {
-    console.log(newcat)
     return fetch("http://localhost:3000/cats", {
       // converting an object to a string
       body: JSON.stringify(newcat),
@@ -54,25 +52,24 @@ class App extends Component{
       method: "POST"
     })
     .then(response => {
-      // if the response is good  - reload the cats
-      if(response.status === 200){
-        this.componentDidMount()
-      } else if(response.status === 422){
-        alert("Enjoys needs to be at least 10 characters!")
+      if(response.status === 422){
+        alert("There is something wrong with your submission.")
       }
-      return response
+      return response.json()
+    })
+    .then(payload => {
+      console.log(payload)
+      this.catIndex()
     })
     .catch(errors => {
       console.log("create errors:", errors)
     })
   }
 
-  editCat = (editcat, id) => {
-    console.log("editcat:", editcat)
-    console.log("id:", id)
+  updateCat = (cat, id) => {
     return fetch(`http://localhost:3000/cats/${id}`, {
       // converting an object to a string
-      body: JSON.stringify(editcat),
+      body: JSON.stringify(cat),
       // specify the info being sent in JSON and the info returning should be JSON
       headers: {
         "Content-Type": "application/json"
@@ -81,15 +78,16 @@ class App extends Component{
       method: "PATCH"
     })
     .then(response => {
-      // if the response is good  - reload the cats
-      if(response.status === 200){
-        return response
-      } else if(response.status === 422){
-        alert("Enjoys needs to be at least 10 characters!")
+      if(response.status === 422){
+        alert("Please check your submission.")
       }
+      return response.json()
+    })
+    .then(payload => {
+      this.catIndex()
     })
     .catch(errors => {
-      console.log("edit errors", errors)
+      console.log("update errors:", errors)
     })
   }
 
@@ -101,11 +99,7 @@ class App extends Component{
       method: "DELETE"
     })
     .then(response => {
-      // if the response is good  - reload the cats
-      if(response.status === 200){
-        this.componentDidMount()
-      }
-      return response
+      return response.json()
     })
     .catch(errors => {
       console.log("delete errors:", errors)
@@ -131,7 +125,7 @@ class App extends Component{
 
             {/* Show */}
             <Route
-              path={"/catshow/:id"}
+              path="/catshow/:id"
               render={ (props) => {
                 let id = props.match.params.id
                 let cat = this.state.cats.find(cat => cat.id === parseInt(id))
@@ -149,13 +143,13 @@ class App extends Component{
 
             {/* Edit */}
             <Route
-              exact path={"/catedit/:id"}
+              exact path="/catedit/:id"
               render={ (props) => {
                 let id = props.match.params.id
                 let cat = this.state.cats.find(cat => cat.id === parseInt(id))
                 return(
                   <CatEdit
-                    editCat={ this.editCat }
+                    updateCat={ this.updateCat }
                     cat={ cat }
                   />
                 )
