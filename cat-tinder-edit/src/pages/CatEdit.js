@@ -13,14 +13,13 @@ import { Redirect } from 'react-router-dom'
 class CatEdit extends Component{
   constructor(props){
     super(props)
-    // small amount of state to manage the form
     this.state = {
       form:{
         name: "",
         age: "",
         enjoys: ""
       },
-      success: false
+      submitted: false
     }
   }
 
@@ -37,7 +36,7 @@ class CatEdit extends Component{
     e.preventDefault()
     // a function call being passed from App.js
     this.props.updateCat(this.state.form, this.props.cat.id)
-    this.setState({ success: true })
+    this.setState({ submitted: true })
   }
 
   render(){
@@ -82,7 +81,7 @@ class CatEdit extends Component{
           </Button>
         </Form>
         <Footer />
-        { this.state.success &&
+        { this.state.submitted &&
           <Redirect
             to={ `/catshow/${this.props.cat.id}` }
           />

@@ -48,10 +48,10 @@ end
 $ rails db:seed
 
 
-## Challenge: Cat Tinder API Endpoints
+## Challenge: Cat Tinder API Endpoints and Request Specs
 - As a developer, I can add an index request spec to my application
 ```ruby
-it "gets a list of Cats" do
+it 'gets a list of Cats' do
   # Create a new cat in the Test Database (not the same one as development)
   Cat.create(name: 'Felix', age: 2, enjoys: 'Walks in the park')
   # Make a request to the API
@@ -59,7 +59,11 @@ it "gets a list of Cats" do
   # Convert the response into a Ruby Hash
   cats = JSON.parse(response.body)
   # Assure that we got a successful response
-  expect(response).to have_http_status(:ok)
+  expect(response.status).to eq 200
+  # Can also look like this:
+  # expect(response).to have_http_status(:ok)
+  # expect(response).to have_http_status(200)
+  
   # Assure that we got one result back as expected
   expect(cats.length).to eq 1
 end
@@ -85,7 +89,12 @@ it "creates a new Cat" do
   # Send the request to the server
   post '/cats', params: cat_params
   # Assure that we get a success back
-  expect(response).to have_http_status(:ok)
+
+  expect(response.status).to eq 200
+  # Can also look like this:
+  # expect(response).to have_http_status(:ok)
+  # expect(response).to have_http_status(200)
+
   # Look up the cat we expect to be created in the Database
   cat = Cat.first
   # Assure that the created cat has the correct attributes
@@ -97,6 +106,11 @@ end
 def create
   cat = Cat.create(cat_params)
   render json: cat
+end
+
+private
+def cat_params
+  params.require(:cat).permit(:name, :age, :enjoys)
 end
 ```
 - As a developer, I can add a update endpoint to my application
@@ -115,7 +129,7 @@ end
 ```
 - Check endpoints in postman
 
-## Challenge: Cat Tinder API Validations
+## Challenge: Cat Tinder API Validations and Model Specs
 - As a developer, I can add the appropriate model specs that will ensure an incomplete cat throws an error
 ```ruby
 it "should validate name" do
@@ -153,7 +167,10 @@ it "creates a new Cat" do
   post '/cats', params: cat_params
 
   # Assure that we get a success back
-  expect(response).to have_http_status(:ok)
+  expect(response.status).to eq 200
+  # Can also look like this:
+  # expect(response).to have_http_status(:ok)
+  # expect(response).to have_http_status(200)
 
   # Look up the cat we expect to be created in the Database
   cat = Cat.first

@@ -118,9 +118,9 @@ class App extends Component{
             {/* Index */}
             <Route
               path="/catindex"
-              render={ (props) => <CatIndex
-                cats={ this.state.cats }
-                /> }
+              render={ (props) =>
+                <CatIndex cats={ this.state.cats } />
+              }
             />
 
             {/* Show */}
@@ -134,6 +134,17 @@ class App extends Component{
                 )
               }}
             />
+            {/* Show - info not loading fast enough */}
+            // <Route
+            //   path="/catshow/:id"
+            //   render={ (props) => {
+            //     let id = props.match.params.id
+            //     let cat = this.state.cats.find(cat => cat.id === parseInt(id))
+            //     console.log(this.state.cats)
+            // -->    return this.state.cats.length > 0 &&
+            //       <CatShow cat={ cat } deleteCat={ this.deleteCat }/>
+            //   }}
+            // />
 
             {/* New */}
             <Route

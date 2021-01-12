@@ -20,9 +20,7 @@ Example:
 ```javascript
 <Route
   path="/catindex"
-  render={ (props) => <CatIndex
-    cats={ this.state.cats }
-    /> }
+  render={ (props) => <CatIndex cats={ this.state.cats } /> }
 />
 ```
 
