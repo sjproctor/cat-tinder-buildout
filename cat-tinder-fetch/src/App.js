@@ -32,7 +32,6 @@ class App extends Component{
       return response.json()
     })
     .then(catsArray => {
-      // set the state with the data from the backend into the empty array
       this.setState({ cats: catsArray })
     })
     .catch(errors => {
@@ -57,8 +56,7 @@ class App extends Component{
       }
       return response.json()
     })
-    .then(payload => {
-      console.log(payload)
+    .then(() => {
       this.catIndex()
     })
     .catch(errors => {
@@ -83,7 +81,7 @@ class App extends Component{
       }
       return response.json()
     })
-    .then(payload => {
+    .then(() => {
       this.catIndex()
     })
     .catch(errors => {
@@ -100,6 +98,9 @@ class App extends Component{
     })
     .then(response => {
       return response.json()
+    })
+    .then(() => {
+      this.catIndex()
     })
     .catch(errors => {
       console.log("delete errors:", errors)
@@ -134,17 +135,6 @@ class App extends Component{
                 )
               }}
             />
-            {/* Show - info not loading fast enough */}
-            // <Route
-            //   path="/catshow/:id"
-            //   render={ (props) => {
-            //     let id = props.match.params.id
-            //     let cat = this.state.cats.find(cat => cat.id === parseInt(id))
-            //     console.log(this.state.cats)
-            // -->    return this.state.cats.length > 0 &&
-            //       <CatShow cat={ cat } deleteCat={ this.deleteCat }/>
-            //   }}
-            // />
 
             {/* New */}
             <Route
