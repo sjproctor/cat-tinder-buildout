@@ -15,9 +15,9 @@ class CatEdit extends Component{
     super(props)
     this.state = {
       form:{
-        name: "",
-        age: "",
-        enjoys: ""
+        name: this.props.cat.name,
+        age: this.props.cat.age,
+        enjoys: this.props.cat.enjoys
       },
       submitted: false
     }
@@ -41,7 +41,7 @@ class CatEdit extends Component{
 
   render(){
     return(
-      <React.Fragment>
+      <>
         <Header />
         <h2>Update Cat Information</h2>
         <Form>
@@ -86,7 +86,7 @@ class CatEdit extends Component{
             to={ `/catshow/${this.props.cat.id}` }
           />
         }
-      </React.Fragment>
+      </>
     )
   }
 }

@@ -5,11 +5,11 @@ import Footer from '../components/Footer.js'
 class CatIndex extends Component{
   render(){
     return(
-      <React.Fragment>
+      <>
         <Header />
         <h2>Something Went Wrong</h2>
         <Footer />
-      </React.Fragment>
+      </>
     )
   }
 }

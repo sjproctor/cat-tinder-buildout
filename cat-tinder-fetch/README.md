@@ -127,14 +127,20 @@ updateCat = (cat, id) => {
 Example:
 ```javascript
 deleteCat = (id) => {
-  return fetch(`http://localhost:3000/cats/${id}`, {
+  fetch(`http://localhost:3000/cats/${id}`, {
     headers: {
       "Content-Type": "application/json"
     },
     method: "DELETE"
   })
   .then(response => {
+    if(response.status === 422){
+      alert("Something is wrong with your submission.")
+    }
     return response.json()
+  })
+  .then(payload => {
+    this.catIndex()
   })
   .catch(errors => {
     console.log("delete errors:", errors)

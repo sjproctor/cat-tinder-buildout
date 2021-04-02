@@ -39,7 +39,7 @@ class CatNew extends Component{
 
   render(){
     return(
-      <React.Fragment>
+      <>
         <Header />
         <h2>Add a New Cat Friend</h2>
         <Form>
@@ -79,8 +79,8 @@ class CatNew extends Component{
           </Button>
         </Form>
         <Footer />
-        { this.state.success && <Redirect to="/catindex" />}
-      </React.Fragment>
+        { this.state.success && <Redirect to="/catindex" /> }
+      </>
     )
   }
 }

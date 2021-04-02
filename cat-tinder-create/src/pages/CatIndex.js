@@ -8,14 +8,14 @@ import { NavLink } from 'react-router-dom'
 class CatIndex extends Component{
   render(){
     return(
-      <React.Fragment>
+      <>
         <Header />
         <h2>Meet the Cats!</h2>
         <br />
           <Col sm="6">
-            { this.props.cats.map((cat, index) => {
+            { this.props.cats.map(cat => {
               return (
-                <Card body key={ index }>
+                <Card body key={ cat.id }>
                   <CardTitle>
                     <h4>
                       <NavLink
@@ -30,7 +30,7 @@ class CatIndex extends Component{
             })}
           </Col>
         <Footer />
-      </React.Fragment>
+      </>
     )
   }
 }

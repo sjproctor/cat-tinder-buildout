@@ -72,6 +72,9 @@ Example:
   render={ (props) => {
     let id = props.match.params.id
     let cat = this.state.cats.find(cat => cat.id === parseInt(id))
+    // or - the plus sign is a unary operator that converts the string of the id to a number
+    let id = +props.match.params.id
+    let cat = this.state.cats.find(cat => cat.id === id)
     return (
       <CatShow
         cat={ cat }

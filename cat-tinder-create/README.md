@@ -15,6 +15,21 @@ As a developer, I have been commissioned to create an application where a user c
 ### Cat Tinder Day 3: Process
 
 **Cat Form**
+- Add state object to New Cat
+
+```javascript
+constructor(props){
+  super(props)
+  this.state = {
+    form:{
+      name: "",
+      age: "",
+      enjoys: ""
+    }
+  }
+}
+```
+
 - Add Reactstrap Form and FormGroup tags to CatNew
 
 Example:

@@ -6,7 +6,7 @@ import { Card, CardTitle, CardText, Col } from 'reactstrap'
 class CatShow extends Component{
   render(){
     return(
-      <React.Fragment>
+      <>
         <Header />
         <Col sm="6" id="show-body">
           <Card body >
@@ -15,7 +15,7 @@ class CatShow extends Component{
           </Card>
         </Col>
         <Footer />
-      </React.Fragment>
+      </>
     )
   }
 }

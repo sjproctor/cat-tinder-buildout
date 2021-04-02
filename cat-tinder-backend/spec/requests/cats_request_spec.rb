@@ -1,45 +1,66 @@
 require 'rails_helper'
 
+# Documenting the behavior that is expected in the API
 RSpec.describe 'Cats', type: :request do
 
-  it 'gets a list of Cats' do
-    # Create a new cat in the Test Database (not the same one as development)
-    Cat.create(name: 'Felix', age: 2, enjoys: 'Walks in the park')
+  describe 'GET /cats' do
+    it 'gets a list of Cats' do
+      # Arrange: there needs to be some data in the db for the response
+      # Create a new cat in the Test Database (not the same one as development)
+      Cat.create(name: 'Felix', age: 2, enjoys: 'Walks in the park')
 
-    # Make a request to the API
-    get '/cats'
+      # Act: simulating the get request to the index endpoint
+      # Make a request to the API
+      get '/cats'
 
-    # Convert the response into a Ruby Hash
-    cats = JSON.parse(response.body)
+      # Assert: What is the expected outcome
+      # Convert the response into a Ruby Hash
+      cats = JSON.parse(response.body)
 
-    # Assure that we got a successful response
-    expect(response).to have_http_status(200)
+      # Assure that we got a successful response
+      expect(response).to have_http_status(200)
 
-    # Assure that we got one result back as expected
-    expect(cats.length).to eq 1
+      # Assure that we got one result back as expected
+      expect(cats.length).to eq 1
+      expect(cats['name']). to eq 'Felix'
+      expect(cats['age']). to eq 2
+      expect(cats['enjoys']). to eq 'Walks in the park'
+    end
   end
 
-  it 'creates a new Cat' do
-    # The params we are going to send with the request
-    cat_params = {
-      cat: {
-        name: 'Buster',
-        age: 4,
-        enjoys: 'Meow Mix, and plenty of sunshine.'
+  # Each test is isolates in that it doesn't know anything about what exists outside this individual test
+  describe 'POST /cats' do
+    it 'creates a new Cat' do
+      # Arrange: building the request with params
+      # The params we are going to send with the request
+      cat_params = {
+        cat: {
+          name: 'Buster',
+          age: 4,
+          enjoys: 'Meow Mix, and plenty of sunshine.'
+        }
       }
-    }
 
-    # Send the request to the server
-    post '/cats', params: cat_params
+      # Act: simulating the post request to the create endpoint
+      # Send the request to the server with the provided data to create the cat, data must be supplied to the post request
+      post '/cats', params: cat_params
 
-    # Assure that we get a success back
-    expect(response).to have_http_status(200)
+      # Assert: on response status and body (content)
+      # Look up the cat we expect to be created in the db - the db did the thing that the it was supposed to do
+      # Assure that the created cat has the correct attributes
+      cat = Cat.first
+      expect(cat.name).to eq 'Buster'
+      expect(cat.age).to eq 4
+      expect(cat.enjoys).to eq 'Meow Mix, and plenty of sunshine.'
 
-    # Look up the cat we expect to be created in the Database
-    cat = Cat.first
-
-    # Assure that the created cat has the correct attributes
-    expect(cat.name).to eq 'Buster'
+      # Assure we get the response back that is expected
+      expect(response).to have_http_status(200)
+      cat_response = JSON.parse
+      expect(cats.length).to eq 1
+      expect(cats['name']). to eq 'Buster'
+      expect(cats['age']). to eq 4
+      expect(cats['enjoys']). to eq 'Meow Mix, and plenty of sunshine.'
+    end
   end
 
 
